@@ -14,7 +14,7 @@ $studentname=$_POST['studentname'];
 $photo=$_FILES["photo"]["name"];
 $cgpa=$_POST['cgpa'];
 move_uploaded_file($_FILES["photo"]["tmp_name"],"studentphoto/".$_FILES["photo"]["name"]);
-$ret=mysqli_query($con,"update students set studentName='$studentname',studentPhoto='$photo',cgpa='$cgpa'  where StudentRegno='".$_SESSION['login']."'");
+$ret=mysqli_query($con,"update students set studentName='$studentname',studentPhoto='$photo',cgpa='$cgpa'  where studentRegno='".$_SESSION['login']."'");
 if($ret)
 {
 echo '<script>alert("Student Record updated Successfully !!")</script>';
@@ -63,7 +63,7 @@ echo '<script>window.location.href=my-profile.php</script>';
                           Student Registration
                         </div>
 <font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
-<?php $sql=mysqli_query($con,"select * from students where StudentRegno='".$_SESSION['login']."'");
+<?php $sql=mysqli_query($con,"select * from students where studentRegno='".$_SESSION['login']."'");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 { ?>
@@ -76,17 +76,17 @@ while($row=mysqli_fetch_array($sql))
   </div>
 
  <div class="form-group">
-    <label for="studentregno">Student Reg No   </label>
-    <input type="text" class="form-control" id="studentregno" name="studentregno" value="<?php echo htmlentities($row['StudentRegno']);?>"  placeholder="Student Reg no" readonly />
+    <label for="studentRegno">Student Reg No   </label>
+    <input type="text" class="form-control" id="studentRegno" name="studentRegno" value="<?php echo htmlentities($row['studentRegno']);?>"  placeholder="Student Reg no" readonly />
     
   </div>
 
 
 
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="Pincode">Pincode  </label>
     <input type="text" class="form-control" id="Pincode" name="Pincode" readonly value="<?php echo htmlentities($row['pincode']);?>" required />
-  </div>   
+  </div>    -->
 
 <div class="form-group">
     <label for="CGPA">CGPA  </label>

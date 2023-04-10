@@ -5,8 +5,8 @@ include("includes/config.php");
 if(isset($_POST['submit']))
 {
     $regno=$_POST['regno'];
-    $password=md5($_POST['password']);
-$query=mysqli_query($con,"SELECT * FROM students WHERE StudentRegno='$regno' and password='$password'");
+    $password=$_POST['password'];
+$query=mysqli_query($con,"SELECT * FROM students WHERE studentRegno='$regno' and password='$password'");
 $num=mysqli_fetch_array($query);
 if($num>0)
 {

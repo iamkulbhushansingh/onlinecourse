@@ -12,7 +12,7 @@ else{
 // Code for Deletion
 if(isset($_GET['del']))
 {
-mysqli_query($con,"delete from students where StudentRegno = '".$_GET['id']."'");
+mysqli_query($con,"delete from students where studentRegno = '".$_GET['id']."'");
 echo '<script>alert("Student Record Deleted Successfully !!")</script>';
 echo '<script>window.location.href=manage-students.php</script>';
       }
@@ -21,8 +21,8 @@ echo '<script>window.location.href=manage-students.php</script>';
      if(isset($_GET['pass']))
       {
         $password="Test@123";
-        $newpass=md5($password);
-              mysqli_query($con,"update students set password='$newpass' where StudentRegno = '".$_GET['id']."'");
+        $newpass=$password;
+              mysqli_query($con,"update students set password='$newpass' where studentRegno = '".$_GET['id']."'");
               echo '<script>alert("Password Reset. New Password is Test@123")</script>';
 echo '<script>window.location.href=manage-students.php</script>';
       } 
@@ -75,7 +75,7 @@ echo '<script>window.location.href=manage-students.php</script>';
                                             <th>#</th>
                                             <th>Reg No </th>
                                             <th>Student Name </th>
-                                            <th> Pincode</th>
+                                            <!-- <th> Pincode</th> -->
                                              <th>Reg Date</th>
                                              <th>Action</th>
                                         </tr>
@@ -91,17 +91,17 @@ while($row=mysqli_fetch_array($sql))
 
                                         <tr>
                                             <td><?php echo $cnt;?></td>
-                                            <td><?php echo htmlentities($row['StudentRegno']);?></td>
+                                            <td><?php echo htmlentities($row['studentRegno']);?></td>
                                             <td><?php echo htmlentities($row['studentName']);?></td>
-                                            <td><?php echo htmlentities($row['pincode']);?></td>
+                                            <!-- <td><?php echo htmlentities($row['pincode']);?></td> -->
                                             <td><?php echo htmlentities($row['creationdate']);?></td>
                                             <td>
-                                            <a href="edit-student-profile.php?id=<?php echo $row['StudentRegno']?>">
+                                            <a href="edit-student-profile.php?id=<?php echo $row['studentRegno']?>">
 <button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button> </a>                                        
-<a href="manage-students.php?id=<?php echo $row['StudentRegno']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')">
+<a href="manage-students.php?id=<?php echo $row['studentRegno']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')">
                                             <button class="btn btn-danger">Delete</button>
 </a>
-<a href="manage-students.php?id=<?php echo $row['StudentRegno']?>&pass=update" onClick="return confirm('Are you sure you want to reset password?')">
+<a href="manage-students.php?id=<?php echo $row['studentRegno']?>&pass=update" onClick="return confirm('Are you sure you want to reset password?')">
 <button type="submit" name="submit" id="submit" class="btn btn-default">Reset Password</button>
 </a>
                                             </td>
