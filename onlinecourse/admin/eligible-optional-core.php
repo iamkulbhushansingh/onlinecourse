@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('includes/config.php');
+error_reporting(0);
 if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:index.php');
@@ -9,21 +10,29 @@ else{
 
 if(isset($_POST['submit']))
 {
-$studentname=$_POST['studentname'];
-$studentRegno=$_POST['studentRegno'];
-$password=$_POST['password'];
-$pincode = rand(100000,999999);
+    var_dump($_POST);
+// $stream_name=$_POST['stream_name'];
+// echo $stream_name;
 
-$ret=mysqli_query($con,"insert into students(studentName,studentRegno,password,pincode,stream_id) values('$studentname','$studentRegno','$password','$pincode',1)");
-if($ret)
-{
-// echo '<script>alert("Student Registered Successfully. Pincode is "+"'.$pincode.'")</script>';
-echo '<script>alert("Student Registered Successfully.")</script>';
-echo '<script>window.location.href=manage-students.php</script>';
-}else{
-echo '<script>alert("Something went wrong. Please try again.")</script>';
-echo '<script>window.location.href=manage-students.php</script>';
-}
+//     $selected_courses = $_POST['courses'];
+//     foreach($selected_courses as $course_name){
+//         echo "hi";
+//         echo $course_name;
+//     }
+    // if (isset($_POST['courses'])) {
+    //     $selected_courses = $_POST['courses'];
+    // } else {
+    //     $selected_courses = array();
+    // }
+    
+    // Insert selected courses into database
+    // foreach ($selected_courses as $course_id) {
+    //     $sql = "INSERT INTO eligible_optional_core (stream_id,stream_name, course_name) VALUES ('".$stream_id."','".$stream_name."', '".$course_id."')";
+    //     mysqli_query($con, $sql);
+    // }
+    
+    // echo "Selected courses have been saved.";
+    
 }
 ?>
 
@@ -34,7 +43,7 @@ echo '<script>window.location.href=manage-students.php</script>';
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin | Student Registration</title>
+    <title>Student Profile</title>
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
     <link href="../assets/css/font-awesome.css" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet" />
@@ -66,29 +75,50 @@ echo '<script>window.location.href=manage-students.php</script>';
 <font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
 
 
+
+
+
                         <div class="panel-body">
-
-                        
-                       <form name="dept" method="post">
-   <div class="form-group">
-    <label for="studentname">Student Name  </label>
-    <input type="text" class="form-control" id="studentname" name="studentname" placeholder="Student Name" required />
-  </div>
-
- <div class="form-group">
-    <label for="studentRegno">Student Reg No   </label>
-    <input type="text" class="form-control" id="studentRegno" name="studentRegno" onBlur="userAvailability()" placeholder="Student Reg no" required />
-     <span id="user-availability-status1" style="font-size:12px;">
-  </div>
-
-
+                       <form method="post" >
+   
+                       <div class="form-group">
+    <label for="stream_name">Select Stream</label>
+    <select class="form-control" name="stream_name" required="required">
+   <option value="">Select Stream</option>   
+   <?php 
+$sql=mysqli_query($con,"select * from stream");
+while($row=mysqli_fetch_array($sql))
+{
+?>
+<option value="<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['stream_name']);?></option>
+<?php } ?>
+    </select> 
+   </div> 
 
 <div class="form-group">
-    <label for="password">Password  </label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required />
-  </div>   
+    <label for="courses">Select Courses</label>
+  <?php 
+$sql = mysqli_query($con, "SELECT * FROM course");
+while ($row = mysqli_fetch_array($sql)) {
+    ?>
+    <div class="form-group">
+        <input type="checkbox" id="course_<?php echo htmlentities($row['id']);?>" name="courses[]" value="<?php echo htmlentities($row['id']);?>" />
+        <label for="course_<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['courseName']);?></label>
+    </div>
+    <?php
+}
+?>
+ </div> 
 
- <button type="submit" name="submit" id="submit" class="btn btn-default">Submit</button>
+
+
+
+
+
+
+
+
+ <button type="submit" name="submit" id="submit" class="btn btn-default">Update</button>
 </form>
                             </div>
                             </div>
@@ -107,21 +137,6 @@ echo '<script>window.location.href=manage-students.php</script>';
   <?php include('includes/footer.php');?>
     <script src="../assets/js/jquery-1.11.1.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
-<script>
-function userAvailability() {
-$("#loaderIcon").show();
-jQuery.ajax({
-url: "check_availability.php",
-data:'regno='+$("#studentRegno").val(),
-type: "POST",
-success:function(data){
-$("#user-availability-status1").html(data);
-$("#loaderIcon").hide();
-},
-error:function (){}
-});
-}
-</script>
 
 
 </body>

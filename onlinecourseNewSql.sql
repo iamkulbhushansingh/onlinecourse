@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2023 at 11:16 PM
+-- Generation Time: Apr 16, 2023 at 10:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -76,7 +76,6 @@ INSERT INTO `course` (`course_code`, `courseName`, `courseUnit`, `noofSeats`, `b
 ('Biometrics – MVNK *', 'Biometrics', NULL, NULL, 0, 0, NULL, 0, 0, 0, 0, 0, '2023-04-11 10:44:17', NULL),
 ('CC – RW', 'Cloud Computing', NULL, NULL, 0, 8, NULL, 5, 5, 5, 50, 0, '2023-04-11 10:44:17', NULL),
 ('CIP – CB', 'CIP', NULL, NULL, 0, 5, NULL, 5, 15, 10, 15, 5, '2023-04-11 10:44:17', NULL),
-('course_code', 'course_name', NULL, NULL, 0, 0, NULL, 0, 0, 0, 0, 0, '2023-04-11 10:44:16', NULL),
 ('Data Comp – VCV', 'Data Compression', NULL, NULL, 0, 50, NULL, 50, 50, 50, 50, 50, '2023-04-11 10:44:17', NULL),
 ('DDPC-SNS', 'DDPC', NULL, NULL, 0, 0, NULL, 50, 50, 50, 50, 50, '2023-04-11 10:44:17', NULL),
 ('DL – AN', 'DL', NULL, NULL, 0, 0, NULL, 0, 50, 50, 50, 50, '2023-04-11 10:44:17', NULL),
@@ -161,7 +160,7 @@ INSERT INTO `department` (`id`, `department`, `creationDate`) VALUES
 
 CREATE TABLE `elective_preference` (
   `elective_preference_id` int(11) NOT NULL,
-  `student_reg_no` varchar(255) NOT NULL,
+  `studentRegno` varchar(255) NOT NULL,
   `E1` int(11) DEFAULT NULL,
   `E2` int(11) DEFAULT NULL,
   `E3` int(11) DEFAULT NULL,
@@ -190,7 +189,9 @@ CREATE TABLE `elective_preference` (
 --
 
 CREATE TABLE `eligible_optional_core` (
-  `stream_name` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL,
+  `stream_id` int(11) NOT NULL,
+  `stream_name` varchar(255) NOT NULL,
   `courseName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -336,46 +337,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`studentRegno`, `stream_id`, `studentPhoto`, `password`, `studentName`, `pincode`, `session`, `department`, `semester`, `cgpa`, `courses_allocated_id`, `enrolment_status`, `optional_core_choice_1`, `optional_core_choice_2`, `optional_core_choice_3`, `password_status`, `creationdate`, `updationDate`) VALUES
-('12356', 2, '', '123456', 'ayushi', '181793', NULL, NULL, NULL, '0.00', 0, 0, NULL, NULL, NULL, 1, '2023-04-02 09:58:10', '02-04-2023 04:22:17 PM'),
-('16MCME02', 7, NULL, 'LmByR', 'yaswanth chouturi', NULL, NULL, NULL, '8', '393.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME02', 7, NULL, 'AkEoA', 'Amruta Jandhyala', NULL, NULL, NULL, '8', '500.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:46', NULL),
-('18MCME03', 7, NULL, 'PdWfG', 'Arun Kumar Dharavath', NULL, NULL, NULL, '8', '496.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:46', NULL),
-('18MCME04', 7, NULL, 'CaDuR', 'Gayathri G', NULL, NULL, NULL, '8', '477.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:46', NULL),
-('18MCME07', 7, NULL, 'ZyGfE', 'Preethi Kajjayam', NULL, NULL, NULL, '8', '473.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:46', NULL),
-('18MCME09', 7, NULL, 'GiSuX', 'Challa Subramanyam', NULL, NULL, NULL, '8', '473.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME10', 7, NULL, 'OzEiX', 'K. Parikshit Rao', NULL, NULL, NULL, '8', '469.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME11', 7, NULL, 'LeQwY', 'P Sai Teja', NULL, NULL, NULL, '8', '462.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME13', 7, NULL, 'SlNpS', 'A.Pavan kumar', NULL, NULL, NULL, '8', '459.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME14', 7, NULL, 'JsGtB', 'Harshitha Bingi', NULL, NULL, NULL, '8', '445.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME15', 7, NULL, 'SoJpE', 'Mallu Rakesh Reddy', NULL, NULL, NULL, '8', '439.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME16', 7, NULL, 'KnEqH', 'Rohan', NULL, NULL, NULL, '8', '429.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME17', 7, NULL, 'YzLpQ', 'V. Sai Koushik', NULL, NULL, NULL, '8', '427.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME18', 7, NULL, 'KqSiE', 'K. Roopa Yashaswini', NULL, NULL, NULL, '8', '415.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME19', 7, NULL, 'WiQyY', 'Chinthakindi Tarun', NULL, NULL, NULL, '8', '415.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME21', 7, NULL, 'WsIhU', 'Piyush Parwani', NULL, NULL, NULL, '8', '415.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME22', 7, NULL, 'LtRpA', 'Yasaswini Tiramdas', NULL, NULL, NULL, '8', '414.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME23', 7, NULL, 'HaIpW', 'Sucharitha Isukapalli', NULL, NULL, NULL, '8', '412.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('18MCME24', 7, NULL, 'HfOyX', 'Nitin Sai Bommi', NULL, NULL, NULL, '8', '397.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI01', 2, NULL, 'VfPtF', 'Ravi Teja Gundimeda', NULL, NULL, NULL, '4', '392.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI02', 2, NULL, 'SjAiE', 'Gorla Vivek Yadav', NULL, NULL, NULL, '4', '464.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI03', 2, NULL, 'YnLgI', 'Mahitha Kodali', NULL, NULL, NULL, '4', '308.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI04', 2, NULL, 'DkYiD', 'Yashwanth Marrapu', NULL, NULL, NULL, '4', '363.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI05', 2, NULL, 'TdAqO', 'Ch Saiman Naidu', NULL, NULL, NULL, '4', '548.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI06', 2, NULL, 'IpMvF', 'Pramod Kumar Dwivedi', NULL, NULL, NULL, '4', '415.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI07', 2, NULL, 'NnViG', 'Jagjeet Suryawanshi', NULL, NULL, NULL, '4', '321.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI08', 2, NULL, 'KtGqG', 'SAYAN DAS', NULL, NULL, NULL, '4', '469.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI09', 2, NULL, 'KwAeY', 'Sai Sanjana Madaram', NULL, NULL, NULL, '4', '481.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI10', 2, NULL, 'UfTzW', 'Manzoor Murtaza', NULL, NULL, NULL, '4', '285.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI11', 2, NULL, 'TsAyN', 'AMARJEET KUMAR', NULL, NULL, NULL, '4', '370.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI14', 2, NULL, 'XmOsW', 'Rajesh Thalla', NULL, NULL, NULL, '4', '562.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI15', 2, NULL, 'SyRhS', 'Kayala Jeevan Prakash', NULL, NULL, NULL, '4', '397.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI16', 2, NULL, 'IhNbO', 'R P Yashasvi', NULL, NULL, NULL, '4', '608.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI18', 2, NULL, 'LxGlC', 'Dipyaman Mukhopadhyay', NULL, NULL, NULL, '4', '606.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI20', 2, NULL, 'OgAfQ', 'Drishty gupta', NULL, NULL, NULL, '4', '548.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI21', 2, NULL, 'YnAvI', 'KRISHNA CHANDRA YADAV', NULL, NULL, NULL, '4', '459.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI22', 2, NULL, 'IcGlE', 'Vikas Koleti', NULL, NULL, NULL, '4', '408.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI23', 2, NULL, 'YdXdK', 'M Pranayraj', NULL, NULL, NULL, '4', '437.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL),
-('21MCMI25', 2, NULL, 'KvJvC', 'Pralhad Kolambkar', NULL, NULL, NULL, '4', '565.00', 0, 0, NULL, NULL, NULL, 0, '2023-04-15 20:35:47', NULL);
+('12356', 2, '', '123456', 'ayushi', '181793', NULL, NULL, NULL, '0.00', 0, 0, NULL, NULL, NULL, 1, '2023-04-02 09:58:10', '02-04-2023 04:22:17 PM');
 
 -- --------------------------------------------------------
 
@@ -433,7 +395,9 @@ INSERT INTO `userlog` (`id`, `studentRegno`, `userip`, `loginTime`, `logout`, `s
 (34, '12356', 0x3a3a3100000000000000000000000000, '2023-04-10 09:22:04', NULL, 1),
 (35, '12356', 0x3a3a3100000000000000000000000000, '2023-04-10 15:40:42', NULL, 1),
 (36, '16MCME02', 0x3a3a3100000000000000000000000000, '2023-04-11 06:20:46', NULL, 1),
-(37, '18MCME01', 0x3a3a3100000000000000000000000000, '2023-04-11 10:48:48', NULL, 1);
+(37, '18MCME01', 0x3a3a3100000000000000000000000000, '2023-04-11 10:48:48', NULL, 1),
+(38, '12356', 0x3a3a3100000000000000000000000000, '2023-04-16 18:12:29', NULL, 1),
+(39, '12356', 0x3a3a3100000000000000000000000000, '2023-04-16 19:06:38', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -476,6 +440,13 @@ ALTER TABLE `department`
 --
 ALTER TABLE `elective_preference`
   ADD PRIMARY KEY (`elective_preference_id`);
+
+--
+-- Indexes for table `eligible_optional_core`
+--
+ALTER TABLE `eligible_optional_core`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `stream_id` (`stream_id`);
 
 --
 -- Indexes for table `level`
@@ -555,6 +526,12 @@ ALTER TABLE `elective_preference`
   MODIFY `elective_preference_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `eligible_optional_core`
+--
+ALTER TABLE `eligible_optional_core`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
@@ -588,7 +565,7 @@ ALTER TABLE `stream`
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
@@ -600,6 +577,13 @@ ALTER TABLE `userlog`
 ALTER TABLE `courses_allocated`
   ADD CONSTRAINT `courses_allocated_ibfk_1` FOREIGN KEY (`student_reg_no`) REFERENCES `students` (`studentRegno`),
   ADD CONSTRAINT `courses_allocated_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `course` (`course_code`);
+
+--
+-- Constraints for table `eligible_optional_core`
+--
+ALTER TABLE `eligible_optional_core`
+  ADD CONSTRAINT `eligible_optional_core_ibfk_1` FOREIGN KEY (`stream_id`) REFERENCES `stream` (`stream_id`),
+  ADD CONSTRAINT `eligible_optional_core_ibfk_2` FOREIGN KEY (`stream_id`) REFERENCES `stream` (`stream_id`);
 
 --
 -- Constraints for table `students`
