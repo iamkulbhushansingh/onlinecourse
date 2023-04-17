@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2023 at 10:14 PM
+-- Generation Time: Apr 17, 2023 at 09:28 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -195,6 +195,18 @@ CREATE TABLE `eligible_optional_core` (
   `courseName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `eligible_optional_core`
+--
+
+INSERT INTO `eligible_optional_core` (`id`, `stream_id`, `stream_name`, `courseName`) VALUES
+(16, 1, 'MCA', 'Advance Algo'),
+(17, 1, 'MCA', 'Biometrics'),
+(18, 1, 'MCA', 'Cloud Computing'),
+(19, 1, 'MCA', 'CIP'),
+(20, 1, 'MCA', 'Data Compression'),
+(21, 1, 'MCA', 'Virtualization');
+
 -- --------------------------------------------------------
 
 --
@@ -236,7 +248,8 @@ CREATE TABLE `news` (
 INSERT INTO `news` (`id`, `newstitle`, `newsDescription`, `postingDate`) VALUES
 (2, 'Test News', 'This is for testing. This is for testing.This is for testing.This is for testing.This is for testing.This is for testing.This is for testing.This is for testing.This is for testing.This is for testing.', '2022-02-10 17:36:50'),
 (3, 'New Course Started C#', 'This is sample text for testing.', '2022-02-11 00:54:38'),
-(4, 'Deadline', 'Today is the last date to register for OC', '2023-04-06 10:46:59');
+(4, 'Deadline', 'Today is the last date to register for OC', '2023-04-06 10:46:59'),
+(5, '', '', '2023-04-17 06:26:40');
 
 -- --------------------------------------------------------
 
@@ -397,7 +410,8 @@ INSERT INTO `userlog` (`id`, `studentRegno`, `userip`, `loginTime`, `logout`, `s
 (36, '16MCME02', 0x3a3a3100000000000000000000000000, '2023-04-11 06:20:46', NULL, 1),
 (37, '18MCME01', 0x3a3a3100000000000000000000000000, '2023-04-11 10:48:48', NULL, 1),
 (38, '12356', 0x3a3a3100000000000000000000000000, '2023-04-16 18:12:29', NULL, 1),
-(39, '12356', 0x3a3a3100000000000000000000000000, '2023-04-16 19:06:38', NULL, 1);
+(39, '12356', 0x3a3a3100000000000000000000000000, '2023-04-16 19:06:38', NULL, 1),
+(40, '12356', 0x3a3a3100000000000000000000000000, '2023-04-17 06:34:02', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -529,7 +543,7 @@ ALTER TABLE `elective_preference`
 -- AUTO_INCREMENT for table `eligible_optional_core`
 --
 ALTER TABLE `eligible_optional_core`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `level`
@@ -541,7 +555,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `semester`
@@ -565,7 +579,7 @@ ALTER TABLE `stream`
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
