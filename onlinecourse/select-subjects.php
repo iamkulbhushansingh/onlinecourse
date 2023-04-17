@@ -10,6 +10,7 @@ else{
 
 if(isset($_POST['submit']))
 {
+  echo var_dump($_POST);
 $studentname=$_POST['studentname'];
 $photo=$_FILES["photo"]["name"];
 $cgpa=$_POST['cgpa'];

@@ -10,28 +10,28 @@ else{
 
 if(isset($_POST['submit']))
 {
-    var_dump($_POST);
-// $stream_name=$_POST['stream_name'];
-// echo $stream_name;
-
-//     $selected_courses = $_POST['courses'];
-//     foreach($selected_courses as $course_name){
-//         echo "hi";
-//         echo $course_name;
-//     }
-    // if (isset($_POST['courses'])) {
-    //     $selected_courses = $_POST['courses'];
-    // } else {
-    //     $selected_courses = array();
+    // var_dump($_POST);
+$stream_name=$_POST['stream_name'];
+    $selected_courses = $_POST['courses'];
+    // foreach($selected_courses as $course_name){
+    //     echo $course_name;
     // }
     
+    if (isset($_POST['courses'])) {
+        $selected_courses = $_POST['courses'];
+    } else {
+        $selected_courses = array();
+    }
+    $sql = mysqli_query($con, "select  * from stream where stream_name='".$stream_name."'");
+    $row=mysqli_fetch_array($sql);
+    // echo $row['stream_id'];
     // Insert selected courses into database
-    // foreach ($selected_courses as $course_id) {
-    //     $sql = "INSERT INTO eligible_optional_core (stream_id,stream_name, course_name) VALUES ('".$stream_id."','".$stream_name."', '".$course_id."')";
-    //     mysqli_query($con, $sql);
-    // }
+    foreach ($selected_courses as $course_name) {
+        $sql = "INSERT INTO eligible_optional_core (stream_id,stream_name,courseName)  VALUES ('".$row['stream_id']."','".$stream_name."', '".$course_name."')";
+        mysqli_query($con, $sql);
+    }
     
-    // echo "Selected courses have been saved.";
+    echo "Selected courses have been saved.";
     
 }
 ?>
@@ -90,7 +90,7 @@ $sql=mysqli_query($con,"select * from stream");
 while($row=mysqli_fetch_array($sql))
 {
 ?>
-<option value="<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['stream_name']);?></option>
+<option value="<?php echo htmlentities($row['stream_name']);?>"><?php echo htmlentities($row['stream_name']);?></option>
 <?php } ?>
     </select> 
    </div> 
@@ -102,8 +102,8 @@ $sql = mysqli_query($con, "SELECT * FROM course");
 while ($row = mysqli_fetch_array($sql)) {
     ?>
     <div class="form-group">
-        <input type="checkbox" id="course_<?php echo htmlentities($row['id']);?>" name="courses[]" value="<?php echo htmlentities($row['id']);?>" />
-        <label for="course_<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['courseName']);?></label>
+        <input type="checkbox" id="course_<?php echo htmlentities($row['courseName']);?>" name="courses[]" value="<?php echo htmlentities($row['courseName']);?>" />
+        <label for="course_<?php echo htmlentities($row['courseName']);?>"><?php echo htmlentities($row['courseName']);?></label>
     </div>
     <?php
 }
