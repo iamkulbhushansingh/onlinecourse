@@ -11,12 +11,8 @@ else{
 if(isset($_POST['submit']))
 {
     // var_dump($_POST);
-$stream_name=$_POST['stream_name'];
+    $stream_name=$_POST['stream_name'];
     $selected_courses = $_POST['courses'];
-    // foreach($selected_courses as $course_name){
-    //     echo $course_name;
-    // }
-    
     if (isset($_POST['courses'])) {
         $selected_courses = $_POST['courses'];
     } else {
@@ -24,15 +20,22 @@ $stream_name=$_POST['stream_name'];
     }
     $sql = mysqli_query($con, "select  * from stream where stream_name='".$stream_name."'");
     $row=mysqli_fetch_array($sql);
-    // echo $row['stream_id'];
     // Insert selected courses into database
     foreach ($selected_courses as $course_name) {
         $sql = "INSERT INTO eligible_optional_core (stream_id,stream_name,courseName)  VALUES ('".$row['stream_id']."','".$stream_name."', '".$course_name."')";
         mysqli_query($con, $sql);
     }
-    
-    echo "Selected courses have been saved.";
-    
+    // to remove duplicate values 
+    $sql = "    DELETE FROM eligible_optional_core 
+    WHERE id NOT IN (
+        SELECT MIN(id)
+        FROM eligible_optional_core
+        GROUP BY stream_name, courseName
+    )";
+        mysqli_query($con, $sql);
+
+        echo '<script>alert("Selected courses have been saved.")</script>';
+
 }
 ?>
 
